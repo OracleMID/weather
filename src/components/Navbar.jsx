@@ -1,0 +1,45 @@
+import React from 'react'
+import logo from '../img/gismeteo_logo.png'
+
+const Navbar = () => {
+    return (
+        <nav>
+        <div className="container">
+            <div className="nav_container">
+                <img src={logo} alt=""/>
+                <ul className="nav_list">
+                    <li className="active">Погода</li>
+                    <li>Новости</li>
+                    <li>Карты</li>
+                    <li>Информеры</li>
+                    <li>Приложения</li>
+                </ul>
+            </div>
+        </div>
+        <div className="subnav">
+            <div className="container">
+                <div className="subnav_container">
+                    <div className="input_field">
+                        <i className="fa-solid fa-magnifying-glass"></i>
+                        <input type="text"/>
+                        <i className="fa-regular fa-star"></i>
+                    </div>
+                    <ul className="search_list">
+                        <li>Сейчас</li>
+                        <li >Сегодня</li>
+                        <li>Завтра</li>
+                        <li>3 дня</li>
+                        <li>10 дней</li>
+                        <li>2 недели</li>
+                        <li>Месяц</li>
+                        <li>Радар</li>
+                        <li>Неделя</li>
+                        <li>Ещё</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    )
+}
+export default Navbar
