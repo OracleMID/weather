@@ -3,19 +3,18 @@ import WeatherDay from './WeatherDay'
 
 
 const Weather = () => {
-    let [data, setData] = useState([])
+    let [data, setData] = useState(null)
     function getWeather() {
         fetch("https://api.open-meteo.com/v1/forecast?latitude=48.23&longitude=38.21&hourly=temperature_2m,windspeed_10m&windspeed_unit=ms&timezone=Europe%2FMoscow")
             .then(response => response.json())
-            .then(response => setData(response,))
+            .then(response => setData(response))
     }
     useEffect(() => {
         getWeather()
-        weeklyWeather = temperature(data?hourly?temperature_2m)
+        // weeklyWeather = temperature(data.hourly.temperature_2m)
         return () => {
         }
     })
-    let weeklyWeather = [{ temperature: [], windSpeed: [] }]
     function temperature(data) {
         let result = []
         let temp = []
@@ -31,19 +30,18 @@ const Weather = () => {
         }
         return result
     }
-
     return (
         <div className="weather_info">
-            {/* <h3 className='t_heading'>Средняя температура, °C</h3>
-            <h3 className='ws_heading'>Скорость ветра, м/с</h3> */}
+            <h3 className='t_heading'>Средняя температура, °C</h3>
+            <h3 className='ws_heading'>Скорость ветра, м/с</h3>
+            {/* <WeatherDay />
             <WeatherDay />
             <WeatherDay />
             <WeatherDay />
             <WeatherDay />
             <WeatherDay />
-            <WeatherDay />
-            <WeatherDay />
-            {/* {weeklyWeather} */}
+            <WeatherDay /> */}
+            {data?temperature(data.hourly.temperature_2m).map(elem=> <WeatherDay temperature={Math.round(elem.reduce((a, elem) => a + elem)/24)}/>):''}
         </div>
     )
 }

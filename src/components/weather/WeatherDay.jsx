@@ -1,7 +1,7 @@
 import React from 'react'
 import sunny from '../../img/weather_img/clear_weather.png'
 let weather_image = sunny
-const WeatherDay = () => {
+const WeatherDay = ({temperature}) => {
     return (
         <div className="weather_day">
             <a href="#">
@@ -9,7 +9,7 @@ const WeatherDay = () => {
                 18 мар
             </a>
             <img src = {weather_image} alt="" />
-            <p>+10</p>
+            <p>{temperature}</p>
             <div className='wind_speed'>
                 3
             </div>
