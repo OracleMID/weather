@@ -1,5 +1,6 @@
 import React from 'react'
-import Weather from './weather/Weather'
+import WeatherWeekly from './weather/WeatherWeekly'
+import WeatherDaily from './weather/WeatherDaily'
 
 const Main = () => {
     return (
@@ -11,7 +12,8 @@ const Main = () => {
                             <a href="#">Россия</a> / <a href="#">Донецкая народная республика</a> / <a href="#">Енакиево</a>
                             <h2>Погода в Енакиево сегодня</h2>
                         </div>
-                        <Weather/>
+                        <WeatherWeekly/>
+                        <WeatherDaily/>
                         <div className="after_weather">
                             <div className="button_block">
                                 <button className="weather_parameters">

@@ -3,7 +3,7 @@ import logo from '../img/gismeteo_logo.png'
 
 const Navbar = () => {
     return (
-        <nav>
+    <nav>
         <div className="container">
             <div className="nav_container">
                 <img src={logo} alt=""/>
@@ -26,14 +26,14 @@ const Navbar = () => {
                     </div>
                     <ul className="search_list">
                         <li>Сейчас</li>
-                        <li >Сегодня</li>
+                        <li>Сегодня</li>
                         <li>Завтра</li>
                         <li>3 дня</li>
+                        <li>Неделя</li>
                         <li>10 дней</li>
                         <li>2 недели</li>
                         <li>Месяц</li>
                         <li>Радар</li>
-                        <li>Неделя</li>
                         <li>Ещё</li>
                     </ul>
                 </div>
