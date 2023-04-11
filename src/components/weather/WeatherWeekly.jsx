@@ -2,18 +2,18 @@ import React, { useState, useEffect } from 'react'
 import WeatherDay from './DayData'
 
 
-const WeatherWeekly = () => {
+const WeatherWeekly = ({lat,lng}) => {
     let [data, setData] = useState(null)
-    function getWeather() {
-        fetch("https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=temperature_2m,weathercode,windspeed_10m&timezone=Europe%2FMoscow")
+    function getWeather(lat,lng) {
+        fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}&hourly=temperature_2m,weathercode,windspeed_10m&timezone=Europe%2FMoscow`)
             .then(response => response.json())
             .then(response => setData(response))
     }
     useEffect(() => {
-        getWeather()
+        getWeather(lat,lng)
         return () => {
         }
-    }, [])
+    }, [lat,lng])
 
     const sortData = (hourlObj) => {
         let result = []

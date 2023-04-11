@@ -1,8 +1,9 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import WeatherWeekly from './weather/WeatherWeekly'
 import WeatherDaily from './weather/WeatherDaily'
 
-const Main = () => {
+const Main = ({lat,lng}) => {
+    console.log(lat,lng)
     return (
         <section className="weather">
             <div className="container">
@@ -12,8 +13,8 @@ const Main = () => {
                             <a href="#">Россия</a> / <a href="#">Донецкая народная республика</a> / <a href="#">Енакиево</a>
                             <h2>Погода в Енакиево сегодня</h2>
                         </div>
-                        <WeatherWeekly/>
-                        <WeatherDaily/>
+                        <WeatherWeekly lat={lat} lng={lng}/>
+                        {/* <WeatherDaily/> */}
                         <div className="after_weather">
                             <div className="button_block">
                                 <button className="weather_parameters">

@@ -1,7 +1,13 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import logo from '../img/gismeteo_logo.png'
 
-const Navbar = () => {
+const Navbar = ({getPlace}) => {
+    const [query, setQuery] = useState('')
+    useEffect(() => {
+        getPlace(query)
+        return () => {
+        }
+      }, [query])
     return (
     <nav>
         <div className="container">
@@ -21,7 +27,7 @@ const Navbar = () => {
                 <div className="subnav_container">
                     <div className="input_field">
                         <i className="fa-solid fa-magnifying-glass"></i>
-                        <input type="text"/>
+                        <input value={query} onChange={(e)=>{setQuery(e.target.value)}} type="text"/>
                         <i className="fa-regular fa-star"></i>
                     </div>
                     <ul className="search_list">
