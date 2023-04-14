@@ -3,7 +3,7 @@ import HourData from './HourData'
 import sunny from '../../img/weather_img/clear_weather.png'
 import WeatherIMG from '../WeatherIMG'
 
-const WeatherDaily = () => {
+const WeatherDaily = ({active}) => {
     let [data, setData] = useState(null)
     function getWeather() {
         fetch("https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=temperature_2m,weathercode,windspeed_10m&past_days=1&forecast_days=3&timezone=Europe%2FMoscow")
@@ -30,7 +30,7 @@ const WeatherDaily = () => {
             // k = 0
             day = {}
         }
-        console.log(result)
+
         return result
     }
     const sortDailyData = (hourlObj) => {
@@ -64,7 +64,7 @@ const WeatherDaily = () => {
     let weekdays = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"]
     let month = ["янв", "фев", "мар", "апр", "май", "июн", "июл", "авг", "сен", "окт", "ноя", "дек"]
     return (
-        <div className="daily_weather">
+        <div className={`daily_weather ${active}`}>
             <div className="daily_weather_list">
                 <div className="prev_day">
                     <div className="weathertab_content">

@@ -22,8 +22,7 @@ h2 {
     font-weight: 400;
     line-height: 23px;
     color: black;
-    margin: 0;
-    margin-top: 10px;
+    margin: 0 10px;
 }
 
 a {
@@ -139,7 +138,7 @@ nav {
 }
 
 .weekly_weather {
-    display: flex;
+    display: none;
     background-color: white;
     width: 100%;
     justify-content: space-between;
@@ -278,5 +277,24 @@ h3 {
 }
 
 .weathertab_info {
-    background-color: rgba(114, 219, 32, 0.25);
+    background-color: rgba(114, 219, 32, 0.25); 
+    font-size: 18px;
+    font-weight: 500;
+    width: 84px;
+}
+
+.prev_day, .next_day{
+    margin-bottom: 16px;
+}
+.current_day{
+    padding-bottom: 16px;
+}
+.daily_weather{
+    display: none;
+}
+.daily_weather.active{
+    display: block;
+}
+.weekly_weather.active{
+    display: flex;
 }
