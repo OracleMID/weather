@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import WeatherWeekly from './weather/WeatherWeekly'
 import WeatherDaily from './weather/WeatherDaily'
+import WeatherTenDays from './weather/WeatherTenDays'
+import WeatherThreeDays from './weather/WeatherThreeDays'
 
 const Main = ({lat,lng, formatted, active}) => {
     return (
@@ -13,7 +15,9 @@ const Main = ({lat,lng, formatted, active}) => {
                             <h2>Погода в {formatted.slice(0, formatted.indexOf(',')!= -1?formatted.indexOf(','):formatted.length)} сегодня</h2>
                         </div>
                         <WeatherWeekly active={active=='weekly'?'active':''} lat={lat} lng={lng}/>
-                        <WeatherDaily active={active=='daily'?'active':''}/>
+                        <WeatherDaily active={active=='daily'?'active':''} lat={lat} lng={lng}/>
+                        <WeatherThreeDays active={active=='threeDays'?'active':''} lat={lat} lng={lng}/>
+                        <WeatherTenDays active={active=='tenDays'?'active':''} lat={lat} lng={lng}/>
                         <div className="after_weather">
                             <div className="button_block">
                                 <button className="weather_parameters">

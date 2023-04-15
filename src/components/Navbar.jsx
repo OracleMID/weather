@@ -38,7 +38,7 @@ const Navbar = ({ getPlace, toggleActive }) => {
                             <li onClick={() => { toggleActive('daily') }}>Сегодня</li>
                             <li onClick={() => { toggleActive('threeDays') }}>3 дня</li>
                             <li onClick={() => { toggleActive('weekly') }}>Неделя</li>
-                            <li onClick={() => { }}>10 дней</li>
+                            <li onClick={() => { toggleActive('tenDays')}}>10 дней</li>
                             <li>Ещё</li>
                         </ul>
                     </div>

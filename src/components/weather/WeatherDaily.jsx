@@ -1,20 +1,19 @@
 import React, { useState, useEffect } from 'react'
 import HourData from './HourData'
-import sunny from '../../img/weather_img/clear_weather.png'
 import WeatherIMG from '../WeatherIMG'
 
-const WeatherDaily = ({active}) => {
+const WeatherDaily = ({ lat, lng, active }) => {
     let [data, setData] = useState(null)
     function getWeather() {
-        fetch("https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=temperature_2m,weathercode,windspeed_10m&past_days=1&forecast_days=3&timezone=Europe%2FMoscow")
+        fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}1&hourly=temperature_2m,weathercode,windspeed_10m&past_days=1&forecast_days=3&timezone=Europe%2FMoscow`)
             .then(response => response.json())
             .then(response => setData(response))
     }
     useEffect(() => {
-        getWeather()
+        getWeather(lat, lng)
         return () => {
         }
-    }, [])
+    }, [lat,lng])
     const sortData = (hourlObj) => {
         let result = []
         let arr = Object.entries(hourlObj)
@@ -56,9 +55,9 @@ const WeatherDaily = ({active}) => {
     }
     const weatherModified = (weathercode) => {
         let weather = weathercode.reduce((a, elem) => {
-            a[elem] = (a[elem]||0) + 1
+            a[elem] = (a[elem] || 0) + 1
             return a
-        },{})
+        }, {})
         return Object.entries(weather).reduce((acc, curr) => acc[1] > curr[1] ? acc : curr)[0]
     }
     let weekdays = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"]
@@ -75,7 +74,7 @@ const WeatherDaily = ({active}) => {
                             <p>{data ? Math.round(sortDailyData(data.hourly)[0].temperature_2m.reduce((a, elem) => a + elem) / 24) : ''} °C</p>
                         </div>
                     </div>
-                    <WeatherIMG weathercode={data ? weatherModified(sortDailyData(data.hourly)[0].weathercode): 0} />
+                    <WeatherIMG weathercode={data ? weatherModified(sortDailyData(data.hourly)[0].weathercode) : 0} />
                 </div>
                 <div className="current_day">
                     <div className="weathertab_content">
@@ -85,16 +84,16 @@ const WeatherDaily = ({active}) => {
                             <p>{data ? Math.round(sortDailyData(data.hourly)[1].temperature_2m.reduce((a, elem) => a + elem) / 24) : ''} °C</p>
                         </div>
                     </div>
-                    <img src={sunny} alt="" />
+                    <WeatherIMG weathercode={data ? weatherModified(sortDailyData(data.hourly)[1].weathercode) : 0} />
                 </div>
                 <div className="next_day">
                     <div className="weathertab_content">
-                        <a>{data ? weekdays[new Date(sortDailyData(data.hourly)[2].time[0]).getDay()]:''}, {data ? new Date(sortDailyData(data.hourly)[2].time[0]).getDate(): ''} {data ? month[new Date(sortDailyData(data.hourly)[2].time[0]).getMonth()]:''}</a>
+                        <a>{data ? weekdays[new Date(sortDailyData(data.hourly)[2].time[0]).getDay()] : ''}, {data ? new Date(sortDailyData(data.hourly)[2].time[0]).getDate() : ''} {data ? month[new Date(sortDailyData(data.hourly)[2].time[0]).getMonth()] : ''}</a>
                         <div className="weathertab_info">
                             <p>{data ? Math.round(sortDailyData(data.hourly)[2].temperature_2m.reduce((a, elem) => a + elem) / 24) : ''} °C</p>
                         </div>
                     </div>
-                    <img src={sunny} alt="" />
+                    <WeatherIMG weathercode={data ? weatherModified(sortDailyData(data.hourly)[2].weathercode) : 0} />
                 </div>
             </div>
             <div className="daily_weather_elem">
