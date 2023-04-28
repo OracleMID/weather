@@ -34,11 +34,11 @@ const Navbar = ({ getPlace, toggleActive }) => {
                             <i className="fa-regular fa-star"></i>
                         </div>
                         <ul className="search_list">
-                            <li onClick={() => { }}>Сейчас</li>
+                            <li onClick={() => { toggleActive('current') }}>Сейчас</li>
                             <li onClick={() => { toggleActive('daily') }}>Сегодня</li>
                             <li onClick={() => { toggleActive('threeDays') }}>3 дня</li>
                             <li onClick={() => { toggleActive('weekly') }}>Неделя</li>
-                            <li onClick={() => { toggleActive('tenDays')}}>10 дней</li>
+                            <li onClick={() => { toggleActive('tenDays') }}>10 дней</li>
                             <li>Ещё</li>
                         </ul>
                     </div>

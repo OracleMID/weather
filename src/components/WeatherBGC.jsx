@@ -1,17 +1,16 @@
 import React from 'react'
-import sunny from '../img/weather_img/clear_weather.png'
-import partlyCloudy from '../img/weather_img/less_cloudy.png'
-import overcast from '../img/weather_img/more_cloudy.png'
-import fog from '../img/weather_img/full_cloudy.png'
-import drizzle from '../img/weather_img/drizzle.png'
-import rain from '../img/weather_img/sunny_rain.png'
-import freezingRain from '../img/weather_img/snowy_rain.png'
-import snowy from '../img/weather_img/snowy.png'
-import rainshower from '../img/weather_img/heavyrain.png'
-import snowshower from '../img/weather_img/heavysnow.png'
-import thunderstorm from '../img/weather_img/thunderstorm.png'
+import sunny from '../img/weather_bgc/clear-sky.jpg'
+import partlyCloudy from '../img/weather_bgc/cloudy-sky.jpg'
+import overcast from '../img/weather_bgc/overcast.jpg'
+import fog from '../img/weather_bgc/fog-sky.jpg'
+import drizzle from '../img/weather_bgc/drizzle.jpg'
+import rain from '../img/weather_bgc/rain.jpg'
+import snowy from '../img/weather_bgc/snowfall.jpg'
+import rainshower from '../img/weather_bgc/rainshower.jpg'
+import snowshower from '../img/weather_bgc/blizzard.jpg'
+import thunderstorm from '../img/weather_bgc/thunderstorm.jpg'
 
-const WeatherIMG = ({ weathercode }) => {
+const WeatherBGC = ({ weathercode }) => {
     let weather_image = sunny
     if (weathercode == 0) {
         weather_image = sunny
@@ -31,9 +30,6 @@ const WeatherIMG = ({ weathercode }) => {
     else if (weathercode >= 61 & weathercode <= 65) {
         weather_image = rain
     }
-    else if (weathercode >= 66 & weathercode <= 67) {
-        weather_image = freezingRain
-    }
     else if (weathercode >= 71 & weathercode <= 77) {
         weather_image = snowy
     }
@@ -47,8 +43,7 @@ const WeatherIMG = ({ weathercode }) => {
         weather_image = thunderstorm
     }
     return (
-        <><img src={weather_image} alt="" /></>
+        <><img className='current_bg' src={weather_image} alt="" /></>
     )
 }
-
-export default WeatherIMG
+export default WeatherBGC

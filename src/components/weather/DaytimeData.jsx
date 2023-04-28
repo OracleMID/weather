@@ -11,18 +11,28 @@ const DaytimeData = ({ time, temperature_2m, weathercode, windspeed_10m }) => {
         return a
     },{})
     let weatherModified = Object.entries(weather).reduce((acc, curr) => acc[1] > curr[1] ? acc : curr)[0]
+    const temperatureIdentify = (temperature_2m) => {
+        if (temperature_2m > 0) {
+            return `+${temperature_2m}`
+        }
+        if (temperature_2m = 0) {
+            return `${temperature_2m}`
+        }
+        if (temperature_2m < 0) {
+            return `-${temperature_2m}`
+        }
+    }
+
     return (
         <div className='threedays_weather_elem'>
-            <p>
-                {weekdays[date.getUTCDay()]},
-                {date.getDate()}
-                {month[date.getMonth()]}
+            <p className='threedays_date'>
+                {weekdays[date.getUTCDay()]}, {date.getDate()} {month[date.getMonth()]}
             </p>
             <div className='threedays_weather_block'>
                 <div className="threedays_weather_column">
                     <span>Ночь</span>
                     <WeatherIMG weathercode={weatherModified} />
-                    <p>{Math.round(temperature_2m.filter((elem, id) => id >= 0 && id < 6).reduce((a, elem) => a + elem) / 6)}</p>
+                    <p>{temperatureIdentify(Math.round(temperature_2m.filter((elem, id) => id >= 0 && id < 6).reduce((a, elem) => a + elem) / 6))}</p>
                     <div className='wind_speed'>
                         {Math.round(windspeed_10m.filter((elem, id) => id >= 0 & id < 6).reduce((a, elem) => a + elem) / 6)}
                     </div>
@@ -30,7 +40,7 @@ const DaytimeData = ({ time, temperature_2m, weathercode, windspeed_10m }) => {
                 <div className="threedays_weather_column">
                     <span>Утро</span>
                     <WeatherIMG weathercode={weatherModified} />
-                    <p>{Math.round(temperature_2m.filter((elem, id) => id >= 6 && id < 12).reduce((a, elem) => a + elem) / 6)}</p>
+                    <p>{temperatureIdentify(Math.round(temperature_2m.filter((elem, id) => id >= 6 && id < 12).reduce((a, elem) => a + elem) / 6))}</p>
                     <div className='wind_speed'>
                         {Math.round(windspeed_10m.filter((elem, id) => id >= 6 & id < 12).reduce((a, elem) => a + elem) / 6)}
                     </div>
@@ -38,7 +48,7 @@ const DaytimeData = ({ time, temperature_2m, weathercode, windspeed_10m }) => {
                 <div className="threedays_weather_column">
                     <span>День</span>
                     <WeatherIMG weathercode={weatherModified} />
-                    <p>{Math.round(temperature_2m.filter((elem, id) => id >= 12 & id < 18).reduce((a, elem) => a + elem) / 6)}</p>
+                    <p>{temperatureIdentify(Math.round(temperature_2m.filter((elem, id) => id >= 12 && id < 18).reduce((a, elem) => a + elem) / 6))}</p>
                     <div className='wind_speed'>
                         {Math.round(windspeed_10m.filter((elem, id) => id >= 12 & id < 18).reduce((a, elem) => a + elem) / 6)}
                     </div>

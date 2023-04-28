@@ -5,7 +5,7 @@ import WeatherIMG from '../WeatherIMG'
 const WeatherDaily = ({ lat, lng, active }) => {
     let [data, setData] = useState(null)
     function getWeather() {
-        fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}1&hourly=temperature_2m,weathercode,windspeed_10m&past_days=1&forecast_days=3&timezone=Europe%2FMoscow`)
+        fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}1&hourly=temperature_2m,weathercode,windspeed_10m&past_days=2&forecast_days=3&timezone=Europe%2FMoscow`)
             .then(response => response.json())
             .then(response => setData(response))
     }
@@ -62,6 +62,18 @@ const WeatherDaily = ({ lat, lng, active }) => {
     }
     let weekdays = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"]
     let month = ["янв", "фев", "мар", "апр", "май", "июн", "июл", "авг", "сен", "окт", "ноя", "дек"]
+    const temperatureIdentify = (temperature_2m) => {
+        if (temperature_2m > 0) {
+            return `+${temperature_2m}`
+        }
+        if (temperature_2m = 0) {
+            return `${temperature_2m}`
+        }
+        if (temperature_2m < 0) {
+            return `-${temperature_2m}`
+        }
+    }
+
     return (
         <div className={`daily_weather ${active}`}>
             <div className="daily_weather_list">
@@ -71,7 +83,7 @@ const WeatherDaily = ({ lat, lng, active }) => {
                             {data ? weekdays[new Date(sortDailyData(data.hourly)[0].time[0]).getDay()] : ''}, {data ? new Date(sortDailyData(data.hourly)[0].time[0]).getDate() : ''} {data ? month[new Date(sortDailyData(data.hourly)[0].time[0]).getMonth()] : ''}
                         </a>
                         <div className="weathertab_info">
-                            <p>{data ? Math.round(sortDailyData(data.hourly)[0].temperature_2m.reduce((a, elem) => a + elem) / 24) : ''} °C</p>
+                            <p>{temperatureIdentify(data ? Math.round(sortDailyData(data.hourly)[0].temperature_2m.reduce((a, elem) => a + elem) / 24) : '')} °C</p>
                         </div>
                     </div>
                     <WeatherIMG weathercode={data ? weatherModified(sortDailyData(data.hourly)[0].weathercode) : 0} />
@@ -81,7 +93,7 @@ const WeatherDaily = ({ lat, lng, active }) => {
                         <a>
                             {data ? weekdays[new Date(sortDailyData(data.hourly)[1].time[0]).getDay()] : ''}, {data ? new Date(sortDailyData(data.hourly)[1].time[0]).getDate() : ''} {data ? month[new Date(sortDailyData(data.hourly)[1].time[0]).getMonth()] : ''}</a>
                         <div className="weathertab_info">
-                            <p>{data ? Math.round(sortDailyData(data.hourly)[1].temperature_2m.reduce((a, elem) => a + elem) / 24) : ''} °C</p>
+                            <p>{temperatureIdentify(data ? Math.round(sortDailyData(data.hourly)[1].temperature_2m.reduce((a, elem) => a + elem) / 24) : '')} °C</p>
                         </div>
                     </div>
                     <WeatherIMG weathercode={data ? weatherModified(sortDailyData(data.hourly)[1].weathercode) : 0} />
@@ -90,7 +102,7 @@ const WeatherDaily = ({ lat, lng, active }) => {
                     <div className="weathertab_content">
                         <a>{data ? weekdays[new Date(sortDailyData(data.hourly)[2].time[0]).getDay()] : ''}, {data ? new Date(sortDailyData(data.hourly)[2].time[0]).getDate() : ''} {data ? month[new Date(sortDailyData(data.hourly)[2].time[0]).getMonth()] : ''}</a>
                         <div className="weathertab_info">
-                            <p>{data ? Math.round(sortDailyData(data.hourly)[2].temperature_2m.reduce((a, elem) => a + elem) / 24) : ''} °C</p>
+                            <p>{temperatureIdentify(data ? Math.round(sortDailyData(data.hourly)[2].temperature_2m.reduce((a, elem) => a + elem) / 24) : '')} °C</p>
                         </div>
                     </div>
                     <WeatherIMG weathercode={data ? weatherModified(sortDailyData(data.hourly)[2].weathercode) : 0} />

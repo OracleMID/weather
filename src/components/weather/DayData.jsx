@@ -10,6 +10,17 @@ const WeatherDay = ({ time, temperature_2m, weathercode, windspeed_10m }) => {
         return a
     },{})
     let weatherModified = Object.entries(weather).reduce((acc, curr) => acc[1] > curr[1] ? acc : curr)[0]
+    const temperatureIdentify = (temperature_2m) => {
+        if (temperature_2m > 0) {
+            return `+${temperature_2m}`
+        }
+        if (temperature_2m = 0) {
+            return `${temperature_2m}`
+        }
+        if (temperature_2m < 0) {
+            return `-${temperature_2m}`
+        }
+    }
 
 return (
     <div className="weekly_weather_column">
@@ -18,7 +29,7 @@ return (
             {date.getDate()} {month[date.getMonth()]}
         </a>
         <WeatherIMG weathercode={weatherModified}/>
-        <p>{Math.round(temperature_2m.reduce((a, elem) => a + elem) / 24)}</p>
+        <p>{temperatureIdentify(Math.round(temperature_2m.reduce((a, elem) => a + elem) / 24))}</p>
         <div className='wind_speed'>
             {Math.round(windspeed_10m.reduce((a, elem) => a + elem) / 24)}
         </div>
